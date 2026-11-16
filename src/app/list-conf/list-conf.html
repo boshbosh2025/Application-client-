@@ -1,0 +1,21 @@
+<div class="conference-container">
+  <div class="conference-card" *ngFor="let conf of conferences">
+    <img [src]="conf.picture" [alt]="conf.title" class="conf-img">
+
+    <div class="conf-details">
+      <h3>{{ conf.title }}</h3>
+      <p><strong>Date :</strong> {{ conf.date }}</p>
+      <p><strong>Adresse :</strong> {{ conf.adress }}</p>
+
+      <p>
+        <strong>Available_Places :</strong>
+        <span *ngIf="conf.available_Places > 0; else complet" class="badge-dispo">
+          {{ conf.available_Places }} places
+        </span>
+        <ng-template #complet>
+          <span class="badge-complet">Complet</span>
+        </ng-template>
+      </p>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,16 @@
+<h1>{{ title }}</h1>
+
+<button type="button" class="btn btn-primary" (click)="toggleList()">
+  {{ showList ? 'Fermer la liste' : 'change' }}
+</button>
+
+<div *ngIf="showList" class="mt-2">
+  <label for="confSelect">Choisir une conférence :</label>
+  <select id="confSelect" class="form-select" (change)="onSelectChange($event)">
+    <option value="" disabled selected>Choisir un élément</option>
+    <option *ngFor="let item of items" [value]="item">{{ item }}</option>
+  </select>
+</div>
+
+<app-welcome-banner></app-welcome-banner>
+<app-search></app-search>

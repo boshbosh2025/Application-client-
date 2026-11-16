@@ -1,12 +1,13 @@
-import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component } from '@angular/core';
+import { Navbar } from './navbar/navbar';
+import { Home } from './pages/home/home';
+import { Footer } from './sharedComponent/footer/footer';
+import { ListConf } from './list-conf/list-conf';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [Navbar, Home, Footer, ListConf],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
-export class App {
-  protected readonly title = signal('mon-projet');
-}
+export class App { }
