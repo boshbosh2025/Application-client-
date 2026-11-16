@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 interface Conference {
   picture: string;
@@ -7,38 +8,52 @@ interface Conference {
   date: string;
   adress: string;
   available_Places: number;
-  // La propriété est plus claire si on la nomme exactement avec le bon libellé métier
-  // availablePlaces est une alternative plus standard en JavaScript, mais ici on garde le nom demandé.
 }
 
 @Component({
   selector: 'app-list-conf',
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './list-conf.html',
   styleUrl: './list-conf.css'
 })
 export class ListConf {
+  searchTerm = '';
+
   conferences: Conference[] = [
     {
-      picture: 'https://via.placeholder.com/150/0000FF/808080?text=Angular',
+      picture: '/angular.svg',
       title: 'Conférence Angular 21',
       date: '15 Décembre 2026',
       adress: 'Paris, France',
       available_Places: 50
     },
     {
-      picture: 'https://via.placeholder.com/150/FF0000/FFFFFF?text=IA',
+      picture: '/ai.svg',
       title: 'L\'Intelligence Artificielle',
       date: '20 Janvier 2027',
       adress: 'Tunis, Tunisie',
       available_Places: 0
     },
     {
-      picture: 'https://via.placeholder.com/150/008000/FFFFFF?text=Web',
+      picture: '/web.svg',
       title: 'Le Web Moderne',
       date: '05 Février 2027',
       adress: 'En ligne',
       available_Places: 120
     }
   ];
+
+  get filteredConferences(): Conference[] {
+    const term = this.searchTerm.trim().toLowerCase();
+
+    if (!term) {
+      return this.conferences;
+    }
+
+    return this.conferences.filter((conf) =>
+      conf.title.toLowerCase().includes(term) ||
+      conf.adress.toLowerCase().includes(term) ||
+      conf.date.toLowerCase().includes(term)
+    );
+  }
 }

@@ -1,21 +1,45 @@
-<div class="conference-container">
-  <div class="conference-card" *ngFor="let conf of conferences">
-    <img [src]="conf.picture" [alt]="conf.title" class="conf-img">
+<div class="conference-page">
+  <div class="search-bar-wrap">
+    <input
+      type="text"
+      [(ngModel)]="searchTerm"
+      class="search-input"
+      placeholder="Rechercher une conférence..."
+      aria-label="Recherche conférence"
+    />
+  </div>
 
-    <div class="conf-details">
-      <h3>{{ conf.title }}</h3>
-      <p><strong>Date :</strong> {{ conf.date }}</p>
-      <p><strong>Adresse :</strong> {{ conf.adress }}</p>
+  <div class="conference-container">
+    <div class="conference-card" *ngFor="let conf of filteredConferences">
+      <img [src]="conf.picture" [alt]="conf.title" class="conf-img" />
 
-      <p>
-        <strong>Available_Places :</strong>
-        <span *ngIf="conf.available_Places > 0; else complet" class="badge-dispo">
-          {{ conf.available_Places }} places
-        </span>
-        <ng-template #complet>
-          <span class="badge-complet">Complet</span>
-        </ng-template>
-      </p>
+      <div class="conf-details">
+        <h3>{{ conf.title }}</h3>
+
+        <div class="detail-item">
+          <span class="label">Date</span>
+          <span>{{ conf.date }}</span>
+        </div>
+
+        <div class="detail-item">
+          <span class="label">Adresse</span>
+          <span>{{ conf.adress }}</span>
+        </div>
+
+        <div class="detail-item availability">
+          <span class="label">Available_Places</span>
+          <span *ngIf="conf.available_Places > 0; else complet" class="badge-dispo">
+            {{ conf.available_Places }} places
+          </span>
+          <ng-template #complet>
+            <span class="badge-complet">Complet</span>
+          </ng-template>
+        </div>
+      </div>
     </div>
+  </div>
+
+  <div *ngIf="filteredConferences.length === 0" class="no-result">
+    Aucune conférence trouvée.
   </div>
 </div>

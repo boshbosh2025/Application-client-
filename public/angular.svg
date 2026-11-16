@@ -1,0 +1,7 @@
+<svg width="600" height="360" viewBox="0 0 600 360" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="600" height="360" rx="24" fill="#EEF3FF"/>
+  <circle cx="300" cy="180" r="130" fill="#DDE8FF"/>
+  <path d="M300 85L392 122L374 248L300 300L226 248L208 122L300 85Z" fill="#DD0031" opacity="0.9"/>
+  <path d="M300 112L350 234H322L309 201H291L278 234H250L300 112ZM292 181H308L299 151L292 181Z" fill="white"/>
+  <text x="300" y="325" text-anchor="middle" font-size="34" font-family="Segoe UI, Arial, sans-serif" font-weight="700" fill="#1E2A78">Angular</text>
+</svg>
