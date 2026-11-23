@@ -56,4 +56,10 @@ export class ListConf {
       conf.date.toLowerCase().includes(term)
     );
   }
+
+  participate(conf: Conference): void {
+    if (conf.available_Places > 0) {
+      conf.available_Places -= 1;
+    }
+  }
 }

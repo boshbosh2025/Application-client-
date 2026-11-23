@@ -10,36 +10,52 @@
   </div>
 
   <div class="conference-container">
-    <div class="conference-card" *ngFor="let conf of filteredConferences">
-      <img [src]="conf.picture" [alt]="conf.title" class="conf-img" />
+    @for (conf of filteredConferences; track conf.title) {
+      <div class="conference-card">
+        <img [src]="conf.picture" [alt]="conf.title" class="conf-img" />
 
-      <div class="conf-details">
-        <h3>{{ conf.title }}</h3>
+        <div class="conf-details">
+          <h3>{{ conf.title }}</h3>
 
-        <div class="detail-item">
-          <span class="label">Date</span>
-          <span>{{ conf.date }}</span>
-        </div>
+          <div class="detail-item">
+            <span class="label">Date</span>
+            <span>{{ conf.date }}</span>
+          </div>
 
-        <div class="detail-item">
-          <span class="label">Adresse</span>
-          <span>{{ conf.adress }}</span>
-        </div>
+          <div class="detail-item">
+            <span class="label">Adresse</span>
+            <span>{{ conf.adress }}</span>
+          </div>
 
-        <div class="detail-item availability">
-          <span class="label">Available_Places</span>
-          <span *ngIf="conf.available_Places > 0; else complet" class="badge-dispo">
-            {{ conf.available_Places }} places
-          </span>
-          <ng-template #complet>
-            <span class="badge-complet">Complet</span>
-          </ng-template>
+          <div class="availability-block">
+            <div class="availability">
+              <span class="label">Available_Places</span>
+
+              @if (conf.available_Places > 0) {
+                <span class="badge-dispo">
+                  {{ conf.available_Places }} places
+                </span>
+              } @else {
+                <span class="badge-complet">Complet</span>
+              }
+            </div>
+
+            <button
+              type="button"
+              class="participate-btn"
+              [disabled]="conf.available_Places === 0"
+              (click)="participate(conf)">
+              {{ conf.available_Places === 0 ? 'Complet' : 'Participate' }}
+            </button>
+          </div>
         </div>
       </div>
-    </div>
+    }
   </div>
 
-  <div *ngIf="filteredConferences.length === 0" class="no-result">
-    Aucune conférence trouvée.
-  </div>
+  @if (filteredConferences.length === 0) {
+    <div class="no-result">
+      Aucune conférence trouvée.
+    </div>
+  }
 </div>

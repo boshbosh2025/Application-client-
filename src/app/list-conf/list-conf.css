@@ -79,8 +79,15 @@
   color: #475569;
 }
 
+.availability-block {
+  padding-top: 8px;
+}
+
 .availability {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
+  gap: 10px;
 }
 
 .badge-dispo {
@@ -91,6 +98,27 @@
 .badge-complet {
   color: #dc2626;
   font-weight: bold;
+}
+
+.participate-btn {
+  width: 100%;
+  margin-top: 10px;
+  padding: 10px 14px;
+  border: none;
+  border-radius: 8px;
+  background: #2563eb;
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.participate-btn:hover:not(:disabled) {
+  background: #1d4ed8;
+}
+
+.participate-btn:disabled {
+  background: #94a3b8;
+  cursor: not-allowed;
 }
 
 .no-result {
